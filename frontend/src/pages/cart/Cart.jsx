@@ -86,7 +86,7 @@ const Cart = () => {
         </div>
       </div>
     </div>
-  ) : <h1 className='text-3xl text-center my-32 ring-2 ring-red-600 py-4 rounded-lg bg-gray-100'>No items in cart! <Link to="/" className='text-red-600'>Add Items</Link></h1>
+  ) : <h1 className='text-3xl text-center my-32 py-4'>No items in cart! <Link to="/" className='text-indigo-700'>Add Items</Link></h1>
 }
 
 export default Cart

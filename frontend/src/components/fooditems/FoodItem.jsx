@@ -26,7 +26,7 @@ const FoodItem = ({ item }) => {
 
 
   return (
-    <div className='food-item w-[360px] shadow-xl transition animate-[fadeIn_1s] rounded-lg bg-white'>
+    <div className='food-item w-[360px] shadow-2xl transition animate-[fadeIn_1s] rounded-lg bg-white'>
       <div className="food-item-img-container relative">
         <img src={`${url}/images/` + item.image} className='food-item-img rounded-t-xl w-[100%] ' alt="" />
         {!cartItems[item._id]

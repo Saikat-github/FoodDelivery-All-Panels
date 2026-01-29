@@ -7,7 +7,22 @@ import Footer from "./footer/Footer";
 import AppDownload from "./appdownload/AppDownload";
 import Login from "./loginpopup/Login";
 import ScrollToTop from "./scrollToTop/ScrollToTop";
+import OrderSkeleton from "./skeletonUI/OrderSkeleton";
+import CartSkeleton from "./skeletonUI/CartSkeleton";
 
 
-export {Navbar, Header, FoodDisplay, FoodItem, ExploreMenu, Footer, AppDownload, Login, ScrollToTop}
+
+export {
+    Navbar,
+    Header,
+    FoodDisplay,
+    FoodItem,
+    ExploreMenu,
+    Footer,
+    AppDownload,
+    Login,
+    ScrollToTop,
+    OrderSkeleton,
+    CartSkeleton
+}
 

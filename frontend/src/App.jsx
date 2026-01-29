@@ -13,13 +13,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import { toast, ToastContainer } from 'react-toastify';
 
 
+
 function App() {
   const showSignUp = useSelector((state) => state.showSignUp)
   const url = useSelector((state) => state.url);
   const token = useSelector((state) => state.token);
-  const [error, setError] = useState();
-  const [loading, setLoading] = useState(false);
-
 
   const dispatch = useDispatch();
 
@@ -32,8 +30,7 @@ function App() {
         toast.error(response.message || "Something went wrong")
       }
     } catch (error) {
-      console.log(error);
-      throw error;
+      toast.error(error.message)
     }
   };
 
@@ -46,59 +43,49 @@ function App() {
         toast.error(response.message || "Something went wrong")
       }
     } catch (error) {
-      console.log(error);
-      throw error;
+      toast.error(error.message)
     }
   }
 
 
+  // restore token and foodlist once
   useEffect(() => {
-    const loadData = async () => {
-      setLoading(true);
-      setError(null);
-      try {
-        await fetchFoodList();
-        const storedToken = localStorage.getItem('token');
-        if (storedToken && storedToken !== token) {
-          dispatch(setToken(storedToken));
-          await fetchCartList(storedToken)
-        }
-      } catch (error) {
-        toast.error(error.message);
-      } finally {
-        setLoading(false);
-      }
+    fetchFoodList();
+    const storedToken = localStorage.getItem("token");
+    if (storedToken) {
+      dispatch(setToken(storedToken));
     }
-    loadData();
+  }, []);
+
+  // protected data – on auth change
+  useEffect(() => {
+    if (token) {
+      fetchCartList(token);
+    }
   }, [token]);
 
 
 
+
   return (
-    loading
-      ?
-      <div className='h-screen flex justify-center items-center'>
-        <div className='h-12 w-12 border-8 border-dotted border-orange-600 rounded-full animate-rotate'></div>
-      </div>
-      :
+    <div>
       <div>
-        <div>
-          {showSignUp ? <Login /> : <></>}
-          <Navbar />
-          <ToastContainer />
-          <div className='mx-[10%] font-Outfit'>
-            <ScrollToTop />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/cart" element={<Cart />} />
-              <Route path="/placeorder" element={<PlaceOrder />} />
-              <Route path='/verify' element={<Verify />} />
-              <Route path='/myorders' element={<MyOrders />} />
-            </Routes>
-          </div>
-          <Footer />
+        {showSignUp ? <Login /> : <></>}
+        <Navbar />
+        <ToastContainer />
+        <div className='mx-2 sm:mx-[10%] font-Outfit'>
+          <ScrollToTop />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/placeorder" element={<PlaceOrder />} />
+            <Route path='/verify' element={<Verify />} />
+            <Route path='/myorders' element={<MyOrders />} />
+          </Routes>
         </div>
+        <Footer />
       </div>
+    </div>
   )
 }
 

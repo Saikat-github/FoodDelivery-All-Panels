@@ -27,7 +27,7 @@ const Navbar = () => {
 
 
   return (
-    <div className='py-6 flex justify-between items-center px-[10%] font-Outfit sticky top-0 z-10 bg-white'>
+    <div className='py-6 flex justify-between items-center px-2 sm:px-[10%] font-Outfit sticky top-0 z-10 bg-white'>
       <div className="logo">
         <Link to="/"><img src={assets.logo} alt="" className='h-6 sm:h-8 md:h-10 cursor-pointer' /></Link>
       </div>
@@ -38,20 +38,25 @@ const Navbar = () => {
         <a href='#footer' className='pb-2 border-b-2 border-transparent hover:cursor-pointer hover:border-slate-700'>Contact Us</a>
       </div>
       <div className="nav-actions flex items-center gap-4 sm:gap-10">
-        <img src={assets.search_icon} alt="search-icon" className='h-4 sm:h-8 hidden sm:inline' />
-        <div className="cart">
-          <Link to="/cart"><img src={assets.basket_icon} alt="" className='h-6 sm:h-8 cursor-pointer' /></Link>
-          <div className={totalAmt > 0 ? "relative w-2 h-2 bg-red-500 rounded-full top-[-34px] right-[-10px]" : "hidden"}></div>
+        <img src={assets.search_icon} alt="search-icon" className='h-4 sm:h-8 hidden sm:inline cursor-pointer' />
+        <div className="cart h-6 sm:h-8 w-6 sm:w-8">
+          <Link to="/cart"><img src={assets.basket_icon} alt="" className=' cursor-pointer' /></Link>
+          <div className={totalAmt > 0 ? "relative w-2 h-2 bg-red-500 rounded-full top-[-30px] right-[-10px]" : "hidden"}></div>
         </div>
-        {!token ? <button onClick={() => dispatch(setShowLogin())} className='bg-transparent text-red-600 text-sm md:text-lg  border-2 border-red-600 py-1 px-4 sm:px-6 rounded-full cursor-pointer hover:bg-red-600 hover:text-white transition-all'>Login</button>
-          : <div className='navbar-profile relative group'>
-            <img src={assets.profile_icon} alt="" />
-            <ul className="nav-profile-dropdown hidden absolute right-0 z-10 group-hover:flex flex-col gap-2 py-3 px-6 rounded-md border border-red-700 bg-white">
-              <li onClick={() => navigate("/myorders")} className='flex  items-center cursor-pointer gap-2'><img className='w-5' src={assets.bag_icon} alt="" /><p className='text-sm hover:text-red-700'>Orders</p></li>
-              <hr />
-              <li onClick={logout} className='flex  items-center cursor-pointer gap-2'><img className='w-5' src={assets.logout_icon} alt="" /><p className='text-sm hover:text-red-700'>Logout</p></li>
-            </ul>
-          </div>}
+        {
+          !token
+            ?
+            <button onClick={() => dispatch(setShowLogin())} className='bg-transparent text-red-600 text-sm md:text-lg  border-2 border-red-600 py-1 px-4 sm:px-6 rounded-full cursor-pointer hover:bg-red-600 hover:text-white transition-all'>
+              Login
+            </button>
+            : 
+            <div className='navbar-profile relative group cursor-pointer'>
+              <img src={assets.profile_icon} alt="" />
+              <ul className="nav-profile-dropdown absolute right-0 z-10 hidden group-hover:flex flex-col gap-4 py-3 px-6 rounded-md bg-white shadow-lg shadow-black w-40">
+                <li onClick={() => navigate("/myorders")} className='flex  items-center cursor-pointer gap-2'><img className='w-5' src={assets.bag_icon} alt="" /><p className='text-sm hover:text-red-700'>Orders</p></li>
+                <li onClick={logout} className='flex  items-center cursor-pointer gap-2'><img className='w-5' src={assets.logout_icon} alt="" /><p className='text-sm hover:text-red-700'>Logout</p></li>
+              </ul>
+            </div>}
         {/* <button onClick={() => dispatch(setShowLogin())} className='bg-red-600 text-white shadow-black shadow-md text-sm md:text-lg  py-1 px-4 sm:px-6 rounded-full cursor-pointer hover:bg-red-600 hover:text-white transition-all'>Sign up</button> */}
       </div>
     </div>

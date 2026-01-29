@@ -3,11 +3,11 @@ import { assets } from '../../assets/assets'
 
 const Footer = () => {
   return (
-    <div className='footer text-slate-50 bg-gray-800 flex flex-col items-center gap-6 px-24 py-20 mt-10 ' id='footer'>
+    <div className='footer text-slate-50 bg-gray-800 flex flex-col items-center gap-6 px-4 sm:px-24 py-20 mt-10 ' id='footer'>
         <div className="footer-content w-[100%] flex flex-col md:flex-row gap-6 justify-between">
             <div className="footer-content-left md:max-w-[30%] flex flex-col items-start gap-6 w-[100%]">
                 <img src={assets.logo} alt="" />
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, animi corrupti eum quo fugiat doloremque id corporis laborum pariatur ipsum accusantium eveniet mollitia, quia velit modi dicta? Sit, et doloremque.</p>
+                <p className='max-sm:text-xs'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, animi corrupti eum quo fugiat doloremque id corporis laborum pariatur ipsum accusantium eveniet mollitia, quia velit modi dicta? Sit, et doloremque.</p>
                 <div className="footer-social-icons flex">
                     <img className='w-10 mr-4 transition duration-200 cursor-pointer hover:scale-105' src={assets.facebook_icon} />
                     <img className='w-10 mr-4 transition duration-200 cursor-pointer hover:scale-105' src={assets.twitter_icon} />
